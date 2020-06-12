@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Observable } from 'rxjs';
 
@@ -9,5 +9,13 @@ export class ProductsController {
   @Get('sales/:product')
   getSalesByProduct(@Param('product') product: string): Observable<any[]> {
     return this.productsService.getSalesByProduct(product);
+  }
+
+  @Get('sales')
+  getSales(
+    @Query('order') order = 'ASC',
+    @Query('limit') limit = 3,
+  ): Observable<any[]> {
+    return this.productsService.getSales(order, limit);
   }
 }

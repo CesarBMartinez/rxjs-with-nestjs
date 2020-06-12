@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
-
-import { SALES_LIST } from './sales';
 import { of, Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
+
+import { SALES_LIST } from './sales';
 
 @Injectable()
 export class ProductsClient {
