@@ -10,16 +10,18 @@ export class GithubClient {
 
   constructor(private httpService: HttpService) {}
 
-  getUser(username: string): Observable<AxiosResponse> {
+  getUser(username: string): Observable<AxiosResponse<GithubUser>> {
     return this.httpService
       .get<GithubUser>(`${this.GITHUB_API}/users/${username}`)
       .pipe(
         map(response => response),
         catchError((error: AxiosError) => {
+          const { response } = error;
+
           return throwError(
             new HttpException(
-              error.response.data.message,
-              error.response.status,
+              { message: response.data.message, username },
+              response.status,
             ),
           );
         }),
