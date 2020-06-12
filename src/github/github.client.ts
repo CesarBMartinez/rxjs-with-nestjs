@@ -14,7 +14,7 @@ export class GithubClient {
     return this.httpService
       .get<GithubUser>(`${this.GITHUB_API}/users/${username}`)
       .pipe(
-        map(response => response),
+        map((response) => response),
         catchError((error: AxiosError) => {
           const { response } = error;
 

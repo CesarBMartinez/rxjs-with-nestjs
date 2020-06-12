@@ -10,7 +10,7 @@ export class AppService {
 
     return source.pipe(
       take(6),
-      tap(index => console.log(index + 1)),
+      tap((index) => console.log(index + 1)),
       finalize(() => console.log('Finished Long Request')),
     );
   }

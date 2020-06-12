@@ -18,8 +18,8 @@ export class ProductsService {
 
   getSalesByProduct(product: string): Observable<any[]> {
     return this.productsClient.getSales().pipe(
-      switchMap(res => res.data),
-      filter(item => item.product === product),
+      switchMap((res) => res.data),
+      filter((item) => item.product === product),
       throwIfEmpty(() => new NotFoundException()),
       toArray(),
     );
@@ -27,7 +27,7 @@ export class ProductsService {
 
   getSales(order: string, limit: number): Observable<any> {
     return this.productsClient.getSales().pipe(
-      map(res => res.data),
+      map((res) => res.data),
       sortBy(order, 'financedAmount'),
       take(limit),
       toArray(),
