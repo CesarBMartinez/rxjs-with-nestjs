@@ -1,13 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { of, Observable } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
+import { Observable, interval } from 'rxjs';
+import { tap, take, finalize } from 'rxjs/operators';
 
 @Injectable()
 export class AppService {
-  getLongRequest(): Observable<string> {
-    return of('Done').pipe(
-      delay(5000),
-      tap(() => console.log('Finished Long Request')),
+  getLongRequest(): Observable<number> {
+    // Emit value in sequence every X ms
+    const source = interval(500);
+
+    return source.pipe(
+      take(6),
+      tap(index => console.log(index + 1)),
+      finalize(() => console.log('Finished Long Request')),
     );
   }
 }
