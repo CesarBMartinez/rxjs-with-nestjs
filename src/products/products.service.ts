@@ -1,7 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Observable } from 'rxjs';
-
-import { ProductsClient } from './client/products.client';
 import {
   filter,
   toArray,
@@ -10,6 +8,8 @@ import {
   take,
   map,
 } from 'rxjs/operators';
+
+import { ProductsClient } from './client/products.client';
 import sortBy from '../operators/sortBy';
 
 @Injectable()

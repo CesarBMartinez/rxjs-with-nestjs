@@ -6,6 +6,7 @@ async function bootstrap() {
 
   // Register a global interceptor
   // app.useGlobalInterceptors(new OnCloseInterceptor());
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();
